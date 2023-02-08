@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from 'react'
+import './App.css'
+import { Canvas } from '@react-three/fiber'
+import {
+  OrbitControls, PerspectiveCamera, Sphere, Stars
+} from '@react-three/drei'
+import LoadingScreen from './components/utils/LoadingScreen/LoadingScreen'
+import Floor from './components/Floor/Floor'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Suspense fallback={<LoadingScreen />}>
+      <Canvas>
+        <color args={[0, 0, 0]} attach='background' />
+        <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
+        <PerspectiveCamera
+          makeDefault
+          fov={50}
+          position={[10, 1, 45]}
+        />
+
+        <ambientLight intensity={0.1} />
+        <Sphere scale={8} position={[0, 10, 0]} />
+        <Floor />
+        <Stars />
+      </Canvas>
+    </Suspense>
+  )
 }
 
-export default App;
+export default App
