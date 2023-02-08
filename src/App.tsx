@@ -15,13 +15,13 @@ const App = () => {
         <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
         <PerspectiveCamera
           makeDefault
-          fov={50}
-          position={[10, 1, 45]}
+          fov={60}
+          position={[10, 0, 45]}
         />
 
         <ambientLight intensity={0.1} />
         <Sphere scale={8} position={[0, 10, 0]} />
-        <Floor />
+        <Floor position={[0, 0, 0]} />
         <Stars />
       </Canvas>
     </Suspense>
