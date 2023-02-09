@@ -13,33 +13,32 @@ const App = () => {
     <Suspense fallback={<LoadingScreen />}>
       <Canvas>
         <color args={[0, 0, 0]} attach='background' />
-        <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
         {
           // INSIDE
         }
-        {/* <PerspectiveCamera
-          makeDefault
-          fov={60}
-          near={0.01}
-          far={100}
-          position={[0, 0, 1]}
-        /> */}
-
-        {
-          // OUTSIDE
-        }
+        <OrbitControls target={[0, 4, 0]} maxPolarAngle={2} minPolarAngle={1.5} />
         <PerspectiveCamera
           makeDefault
           fov={60}
           near={0.01}
           far={100}
-          position={[10, 0, 45]}
+          position={[0, 0, 1]}
         />
 
-        <ambientLight intensity={0.8} />
+        {
+          // OUTSIDE
+        }
+        {/* <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
+        <PerspectiveCamera
+          makeDefault
+          fov={60}
+          position={[10, 0, 45]}
+        /> */}
+
+        <Stars />
+        <ambientLight intensity={1} />
         <Sphere scale={8} position={[0, 10, 0]} />
         <Floor position={[0, 0, 0]} />
-        <Stars />
       </Canvas>
     </Suspense>
   )
