@@ -2,6 +2,7 @@ import React, { Suspense, useRef, useState } from 'react'
 import './App.css'
 import { Canvas, ThreeEvent } from '@react-three/fiber'
 import {
+  Bounds,
   OrbitControls,
   PerspectiveCamera,
   Stars
@@ -56,7 +57,9 @@ const App = () => {
           position={[10, 0, 45]}
         />
 
-        <Sphere hasEntered={hasEntered} />
+        <Bounds fit clip observe margin={2}>
+          <Sphere hasEntered={hasEntered} />
+        </Bounds>
         <Floor position={[0, 0, 0]} />
         <Stars />
       </Canvas>
