@@ -16,24 +16,24 @@ const App = () => {
         {
           // INSIDE
         }
-        <OrbitControls target={[0, 4, 0]} maxPolarAngle={2} minPolarAngle={1.5} />
+        {/* <OrbitControls target={[0, 6, 0]} maxPolarAngle={2.5} minPolarAngle={1.5} />
         <PerspectiveCamera
           makeDefault
           fov={60}
           near={0.01}
           far={100}
           position={[0, 0, 1]}
-        />
+        /> */}
 
         {
           // OUTSIDE
         }
-        {/* <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
+        <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
         <PerspectiveCamera
           makeDefault
           fov={60}
           position={[10, 0, 45]}
-        /> */}
+        />
 
         <Stars />
         <ambientLight intensity={1} />
