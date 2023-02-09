@@ -1,18 +1,38 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import './App.css'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, ThreeEvent } from '@react-three/fiber'
 import {
-  OrbitControls, PerspectiveCamera, Stars
+  OrbitControls,
+  PerspectiveCamera,
+  Stars
 } from '@react-three/drei'
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 import LoadingScreen from './components/utils/LoadingScreen/LoadingScreen'
 import Floor from './components/Floor/Floor'
 import Sphere from './components/Sphere/Sphere'
+import MainButton from './components/MainButton/MainButton'
 
 const App = () => {
+  const orbitRef = useRef<OrbitControlsImpl>(null)
+  const cameraRef = useRef<typeof PerspectiveCamera>(null)
+  const [hasEntered, setHasEntered] = useState<boolean>(false)
+
+  const toggleHasEntered = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation()
+
+    if (!orbitRef.current) {
+      return
+    }
+
+    setHasEntered(!hasEntered)
+    orbitRef.current.enableZoom = !orbitRef.current.enableZoom
+  }
+
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Canvas>
         <color args={[0, 0, 0]} attach='background' />
+        <ambientLight intensity={1} />
         {
           // INSIDE
         }
@@ -28,18 +48,19 @@ const App = () => {
         {
           // OUTSIDE
         }
-        <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
+        <OrbitControls ref={orbitRef} target={[0, 6, 0]} maxPolarAngle={1.45} />
         <PerspectiveCamera
+          ref={cameraRef}
           makeDefault
           fov={60}
           position={[10, 0, 45]}
         />
 
-        <Stars />
-        <ambientLight intensity={1} />
-        <Sphere scale={8} position={[0, 10, 0]} />
+        <Sphere hasEntered={hasEntered} />
         <Floor position={[0, 0, 0]} />
+        <Stars />
       </Canvas>
+      <MainButton onClick={(e) => toggleHasEntered(e)} hasEntered={hasEntered} />
     </Suspense>
   )
 }

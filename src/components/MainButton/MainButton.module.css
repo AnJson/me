@@ -1,0 +1,22 @@
+.wrapper {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+  z-index: 2000;
+}
+
+.btn {
+  border: 0;
+  outline: none;
+  padding: 1rem 4rem;
+  background-color: #1ac274;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+  text-transform: uppercase;
+}

@@ -2,9 +2,17 @@ import React from 'react'
 import * as THREE from 'three'
 import SphereGrid from './SphereGrid'
 
-const Sphere = (props: JSX.IntrinsicElements['group']) => {
+type Props = {
+  hasEntered: boolean
+}
+
+const Sphere = ({ hasEntered }: Props) => {
   return (
-    <group {...props} dispose={null}>
+    <group
+      scale={8}
+      position={[0, 10, 0]}
+      dispose={null}
+    >
       <mesh>
         <sphereGeometry args={[1.5, 64, 32]} />
         <meshStandardMaterial
