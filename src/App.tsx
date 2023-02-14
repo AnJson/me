@@ -18,6 +18,21 @@ const App = () => {
   const cameraRef = useRef<typeof PerspectiveCamera>(null)
   const [hasEntered, setHasEntered] = useState<boolean>(false)
 
+  const toggleOrbitSettings = () => {
+    if (!orbitRef.current) {
+      return
+    }
+
+    orbitRef.current.enableZoom = !orbitRef.current.enableZoom
+    if (orbitRef.current.maxPolarAngle === 1.45 && orbitRef.current.minPolarAngle === 0) {
+      orbitRef.current.maxPolarAngle = 2.5
+      orbitRef.current.minPolarAngle = 1.2
+    } else {
+      orbitRef.current.maxPolarAngle = 1.45
+      orbitRef.current.minPolarAngle = 0
+    }
+  }
+
   const toggleHasEntered = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation()
 
@@ -26,7 +41,7 @@ const App = () => {
     }
 
     setHasEntered(!hasEntered)
-    orbitRef.current.enableZoom = !orbitRef.current.enableZoom
+    toggleOrbitSettings()
   }
 
   return (
@@ -37,7 +52,7 @@ const App = () => {
         {
           // INSIDE
         }
-        {/* <OrbitControls target={[0, 6, 0]} maxPolarAngle={2.5} minPolarAngle={1.5} />
+        {/* <OrbitControls target={[0, 10, 0]} maxPolarAngle={2.5} minPolarAngle={1.5} />
         <PerspectiveCamera
           makeDefault
           fov={60}
@@ -49,7 +64,7 @@ const App = () => {
         {
           // OUTSIDE
         }
-        <OrbitControls makeDefault ref={orbitRef} target={[0, 10, -1.4]} maxPolarAngle={1.45} />
+        <OrbitControls makeDefault ref={orbitRef} target={[0, 10, -1.4]} maxPolarAngle={1.45} minPolarAngle={0} />
         <PerspectiveCamera
           ref={cameraRef}
           makeDefault

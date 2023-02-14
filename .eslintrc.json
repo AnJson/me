@@ -27,6 +27,7 @@
         }
     },
     "rules": {
+        "no-unused-expressions": ["warn", { "allowTernary": true }],
         "react/jsx-props-no-spreading": "off",
         "react/no-unknown-property": "off",
         "no-useless-escape": "off",
