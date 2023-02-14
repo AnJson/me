@@ -14,7 +14,8 @@ const Sphere = ({ hasEntered }: Props) => {
   // NOTE: Testing bounds.
   useEffect(() => {
     if (hasEntered && pinkSphereRef.current) {
-      boundsApi.refresh(pinkSphereRef.current).fit()
+      // boundsApi.refresh(pinkSphereRef.current).fit()
+      boundsApi.to({ position: [0, 10, 5], target: [0, 10, -1.4] })
     } else if (!hasEntered && pinkSphereRef.current) {
       boundsApi.refresh().fit()
     }

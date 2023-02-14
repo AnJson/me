@@ -1,6 +1,6 @@
 import React, { Suspense, useRef, useState } from 'react'
 import './App.css'
-import { Canvas, ThreeEvent } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import {
   Bounds,
   OrbitControls,
@@ -49,7 +49,7 @@ const App = () => {
         {
           // OUTSIDE
         }
-        <OrbitControls ref={orbitRef} target={[0, 6, 0]} maxPolarAngle={1.45} />
+        <OrbitControls makeDefault ref={orbitRef} target={[0, 10, -1.4]} maxPolarAngle={1.45} />
         <PerspectiveCamera
           ref={cameraRef}
           makeDefault
