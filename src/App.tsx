@@ -49,21 +49,6 @@ const App = () => {
       <Canvas>
         <color args={[0, 0, 0]} attach='background' />
         <ambientLight intensity={1} />
-        {
-          // INSIDE
-        }
-        {/* <OrbitControls target={[0, 10, 0]} maxPolarAngle={2.5} minPolarAngle={1.5} />
-        <PerspectiveCamera
-          makeDefault
-          fov={60}
-          near={0.01}
-          far={100}
-          position={[0, 0, 1]}
-        /> */}
-
-        {
-          // OUTSIDE
-        }
         <OrbitControls makeDefault ref={orbitRef} target={[0, 10, -1.4]} maxPolarAngle={1.45} minPolarAngle={0} />
         <PerspectiveCamera
           ref={cameraRef}
